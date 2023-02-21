@@ -34,6 +34,7 @@ let package = Package(
         .target(
             name: "NABCreateXCFrameworkKit",
             dependencies: [
+                .product(name: "XCBuildSupport", package: "swift-package-manager"),
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "Rainbow", package: "Rainbow"),
             ]),
