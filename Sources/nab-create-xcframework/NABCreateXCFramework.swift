@@ -19,7 +19,7 @@ extension NABCreateXCFrameworkKit {
 
         @Flag(name: [.long, .short], help: "Provide additional build progress.")
         var verbose: Bool = false
-        
+
         @OptionGroup var buildOptions: BuildOptionGroup
 
         func run() async throws {
