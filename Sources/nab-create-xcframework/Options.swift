@@ -2,6 +2,10 @@ import Foundation
 import ArgumentParser
 
 struct BuildOptionGroup: ParsableArguments {
+    @Option(name: [.customShort("o"), .customLong("output")],
+            help: "Path indicates a XCFrameworks output directory.")
+    var customOutputDirectory: URL?
+
     @Flag(name: .long,
           help: "Whether also building for simulator of each SDKs or not.")
     var supportSimulators = false
