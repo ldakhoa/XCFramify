@@ -31,6 +31,28 @@ extension Runner {
         public var frameworkType: FrameworkType
         public var outputDirectory: URL?
         public var verbose: Bool
+        public var enableLibraryEvolution: Bool
+        public var enableBuildLibraryForDistribution: Bool
+
+        public init(
+            buildConfiguration: BuildConfiguration,
+            isSimulatorSupported: Bool,
+            isDebugSymbolsIsEmbedded: Bool,
+            frameworkType: FrameworkType,
+            outputDirectory: URL? = nil,
+            verbose: Bool,
+            enableLibraryEvolution: Bool = false,
+            enableBuildLibraryForDistribution: Bool = false
+        ) {
+            self.buildConfiguration = buildConfiguration
+            self.isSimulatorSupported = isSimulatorSupported
+            self.isDebugSymbolsIsEmbedded = isDebugSymbolsIsEmbedded
+            self.frameworkType = frameworkType
+            self.outputDirectory = outputDirectory
+            self.verbose = verbose
+            self.enableLibraryEvolution = enableLibraryEvolution
+            self.enableBuildLibraryForDistribution = enableBuildLibraryForDistribution
+        }
     }
 
     public enum OutputDirectory {

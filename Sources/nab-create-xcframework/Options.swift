@@ -1,7 +1,16 @@
 import Foundation
 import ArgumentParser
+import NABCreateXCFrameworkKit
 
 struct BuildOptionGroup: ParsableArguments {
+    @Flag(name: [.short, .long],
+          help: "Provide additional build progress.")
+    var verbose: Bool = false
+
+    @Option(name: [.customLong("configuration"), .customShort("c")],
+            help: "Build configuration for generated frameworks. (debug / release)")
+    var buildConfiguration: BuildConfiguration = .release
+
     @Option(name: [.customShort("o"), .customLong("output")],
             help: "Path indicates a XCFrameworks output directory.")
     var customOutputDirectory: URL?
@@ -21,4 +30,23 @@ struct BuildOptionGroup: ParsableArguments {
     @Flag(name: .customLong("static"),
           help: "Whether generated frameworks are Static Frameworks or not.")
     var shouldBuildStaticFramework = false
+}
+
+extension BuildOptionGroup {
+    var frameworkType: FrameworkType {
+        shouldBuildStaticFramework ? .static : .dynamic
+    }
+}
+
+extension BuildConfiguration: ExpressibleByArgument {
+    public init?(argument: String) {
+        switch argument.lowercased() {
+        case "debug":
+            self = .debug
+        case "release":
+            self = .release
+        default:
+            return nil
+        }
+    }
 }

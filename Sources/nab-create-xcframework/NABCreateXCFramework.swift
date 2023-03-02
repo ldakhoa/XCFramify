@@ -32,7 +32,25 @@ extension NABCreateXCFrameworkKit {
         var platforms: [SDK] = []
 
         func run() async throws {
-            print("")
+            let runner = Runner(options: .init(
+                buildConfiguration: buildOptions.buildConfiguration,
+                isSimulatorSupported: buildOptions.supportSimulators,
+                isDebugSymbolsIsEmbedded: buildOptions.shouldBuildLibraryForDistribution,
+                frameworkType: buildOptions.frameworkType,
+                verbose: buildOptions.verbose
+            ))
+
+            let outputDir: Runner.OutputDirectory
+            if let customOutputDir = buildOptions.customOutputDirectory {
+                outputDir = .custom(customOutputDir)
+            } else {
+                outputDir = .default
+            }
+
+            try await runner.run(
+                projectDirectory: packageDirectory,
+                frameworkOutputDir: outputDir
+            )
         }
     }
 }
