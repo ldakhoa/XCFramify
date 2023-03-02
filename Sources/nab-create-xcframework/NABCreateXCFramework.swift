@@ -1,5 +1,7 @@
 import Foundation
 import ArgumentParser
+import NABCreateXCFrameworkKit
+import OrderedCollections
 
 @main
 struct NABCreateXCFrameworkKit: AsyncParsableCommand {
@@ -17,13 +19,32 @@ extension NABCreateXCFrameworkKit {
         @Argument(help: "Path indicates a package directory.", completion: .directory)
         var packageDirectory: URL = URL(fileURLWithPath: ".")
 
+        @Argument(help: "The product name. Optional if scheme doesn't match the name of your framework")
+        var productName: String = ""
+
         @Flag(name: [.long, .short], help: "Provide additional build progress.")
         var verbose: Bool = false
 
         @OptionGroup var buildOptions: BuildOptionGroup
 
+        @Option(help: "Platforms to create XCFramework for. (availables: \(availablePlatforms.map(\.rawValue).joined(separator: ", ")))",
+                completion: .list(availablePlatforms.map(\.rawValue)))
+        var platforms: [SDK] = []
+
         func run() async throws {
-            print("Hello")
+            print("")
+        }
+    }
+}
+
+private let availablePlatforms: OrderedSet<SDK> = [.iOS, .watchOS]
+
+extension SDK: ExpressibleByArgument {
+    public init?(argument: String) {
+        if let initialized = SDK(rawValue: argument) {
+            self = initialized
+        } else {
+            return nil
         }
     }
 }

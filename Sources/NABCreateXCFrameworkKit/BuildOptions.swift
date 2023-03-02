@@ -7,6 +7,7 @@ struct BuildOptions: Hashable, Codable {
     /// Initializes a new instance of `BuildOptions`.
     /// - Parameters:
     ///   - buildConfiguration: The build configuration used to build the framework.
+    ///   - isSimulatorSupported: A flag indicating whether to support simulator.
     ///   - isDebugSymbolsEmbedded: A flag indicating whether to embed debug symbols in the built framework.
     ///   - frameworkType: The type of framework to build.
     ///   - sdks: An ordered set of `SDK`s to build the framework for.
@@ -16,6 +17,7 @@ struct BuildOptions: Hashable, Codable {
     ///   - enableBuildLibraryForDistribution: A flag indicating whether to build a library for distribution.
     init(
         buildConfiguration: BuildConfiguration,
+        isSimulatorSupported: Bool,
         isDebugSymbolsEmbedded: Bool,
         frameworkType: FrameworkType,
         sdks: OrderedSet<SDK>,
@@ -25,6 +27,7 @@ struct BuildOptions: Hashable, Codable {
         enableBuildLibraryForDistribution: Bool
     ) {
         self.buildConfiguration = buildConfiguration
+        self.isSimulatorSupported = isSimulatorSupported
         self.isDebugSymbolsEmbedded = isDebugSymbolsEmbedded
         self.frameworkType = frameworkType
         self.sdks = sdks
@@ -36,6 +39,9 @@ struct BuildOptions: Hashable, Codable {
 
     /// The build configuration used to build the framework.
     var buildConfiguration: BuildConfiguration
+
+    /// A flag indicating whether to support simulator.
+    var isSimulatorSupported: Bool
 
     /// A flag indicating whether to embed debug symbols in the built framework.
     var isDebugSymbolsEmbedded: Bool
@@ -58,6 +64,7 @@ struct BuildOptions: Hashable, Codable {
     /// A flag indicating whether to build a library for distribution.
     var enableBuildLibraryForDistribution: Bool
 }
+
 /// A structure for specifying extra build flags.
 public struct ExtraFlags: Hashable, Codable {
     /// An array of additional C compiler flags.
