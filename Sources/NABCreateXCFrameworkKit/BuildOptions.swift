@@ -144,6 +144,19 @@ public enum SDK: String, Codable {
         }
     }
 
+    var name: String {
+        switch self {
+        case .iOS:
+            return "iphoneos"
+        case .iOSSimulator:
+            return "iphonesimulator"
+        case .watchOS:
+            return "watchos"
+        case .watchOSSimulator:
+            return "watchsimulator"
+        }
+    }
+
     var destination: String {
         switch self {
         case .iOS:
