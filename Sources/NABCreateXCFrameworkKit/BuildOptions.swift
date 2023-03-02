@@ -108,7 +108,7 @@ public enum SDK: String, Codable {
             return nil
         }
     }
-    
+
     /// Returns a set of SDKs for simulators based on the current SDK.
     func extractForSimulators() -> Set<SDK> {
         switch self {

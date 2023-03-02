@@ -17,14 +17,14 @@ struct ArchiveCommand: XcodeBuildCommand {
             ("configuration", buildConfiguration.settingsValue),
             ("scheme", project.scheme),
             ("archivePath", xcArchivePath.path),
-            ("destination", sdk.destination)
+            ("destination", sdk.destination),
         ].map(XcodeBuildOption.init(key:value:))
     }
 
     var environmentVaribles: [XcodeBuildEnvironmentVariable] {
         [
             ("BUILD_DIR", project.workspaceDirectory.path),
-            ("SKIP_INSTALL", "NO")
+            ("SKIP_INSTALL", "NO"),
         ].map(XcodeBuildEnvironmentVariable.init(key:value:))
     }
 
