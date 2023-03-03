@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "nab-create-xcframework",
+    name: "prism",
     platforms: [
         .macOS(.v13)
     ],
     products: [
-        .executable(name: "nab-create-xcframework", targets: ["nab-create-xcframework"]),
+        .executable(name: "prism", targets: ["prism"]),
         .library(
-            name: "NABCreateXCFrameworkKit",
-            targets: ["NABCreateXCFrameworkKit"])
+            name: "PrismKit",
+            targets: ["PrismKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-package-manager.git",
@@ -26,20 +26,20 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "nab-create-xcframework",
+            name: "prism",
             dependencies: [
-                .target(name: "NABCreateXCFrameworkKit"),
+                .target(name: "PrismKit"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
         .target(
-            name: "NABCreateXCFrameworkKit",
+            name: "PrismKit",
             dependencies: [
                 .product(name: "XCBuildSupport", package: "swift-package-manager"),
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "Rainbow", package: "Rainbow"),
             ]),
         .testTarget(
-            name: "NABCreateXCFrameworkKitTests",
-            dependencies: ["NABCreateXCFrameworkKit"]),
+            name: "PrismKitTests",
+            dependencies: ["PrismKit"]),
     ]
 )

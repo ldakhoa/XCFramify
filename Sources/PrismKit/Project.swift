@@ -10,7 +10,7 @@ struct Project {
     }
 
     var workspaceDirectory: URL {
-        buildDirectory.appendingPathExtension("nab_create_xcframework")
+        buildDirectory.appendingPathExtension("prism")
     }
 
     var projectPath: URL {

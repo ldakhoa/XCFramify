@@ -1,12 +1,8 @@
 import Foundation
 import ArgumentParser
-import NABCreateXCFrameworkKit
+import PrismKit
 
 struct BuildOptionGroup: ParsableArguments {
-    @Flag(name: [.short, .long],
-          help: "Provide additional build progress.")
-    var verbose: Bool = false
-
     @Option(name: [.customLong("configuration"), .customShort("c")],
             help: "Build configuration for generated frameworks. (debug / release)")
     var buildConfiguration: BuildConfiguration = .release

@@ -1,10 +1,10 @@
 import Foundation
 import ArgumentParser
-import NABCreateXCFrameworkKit
+import PrismKit
 import OrderedCollections
 
 @main
-struct NABCreateXCFrameworkKit: AsyncParsableCommand {
+struct Prism: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A build tool to create XCFrameworks from Swift packages.",
         subcommands: [Create.self],
@@ -12,7 +12,7 @@ struct NABCreateXCFrameworkKit: AsyncParsableCommand {
     )
 }
 
-extension NABCreateXCFrameworkKit {
+extension Prism {
     struct Create: AsyncParsableCommand {
         static var configuration: CommandConfiguration = .init(abstract: "Create XCFramework for a single package.")
 
@@ -37,7 +37,7 @@ extension NABCreateXCFrameworkKit {
                 isSimulatorSupported: buildOptions.supportSimulators,
                 isDebugSymbolsIsEmbedded: buildOptions.shouldBuildLibraryForDistribution,
                 frameworkType: buildOptions.frameworkType,
-                verbose: buildOptions.verbose
+                verbose: verbose
             ))
 
             let outputDir: Runner.OutputDirectory
