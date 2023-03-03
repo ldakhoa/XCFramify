@@ -21,3 +21,7 @@ Updated...
 ## Usage
 
 `prism create path/to/project`
+
+## Why Prism
+
+> It suggests the idea of breaking up light into its constituent colors. This is a fitting metaphor for what the tool does, which is to break up a static library into its constituent architectures in order to create an XCFramework that can be used across multiple platforms. The prism also reflects the tool's ability to simplify the process of creating cross-platform frameworks, which can often be complex and time-consuming. Additionally, the name Prism has a modern and futuristic feel, which is appropriate for a tool that is designed to facilitate cross-platform development.
