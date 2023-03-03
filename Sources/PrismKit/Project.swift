@@ -17,3 +17,8 @@ struct Project {
         buildDirectory.appendingPathComponent("\(name).xcodeproj")
     }
 }
+
+public enum ProjectLocator {
+    case workspace(URL)
+    case projectFile(URL)
+}

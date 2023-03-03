@@ -40,6 +40,9 @@ let package = Package(
             ]),
         .testTarget(
             name: "PrismKitTests",
-            dependencies: ["PrismKit"]),
+            dependencies: ["PrismKit"],
+            exclude: ["Resources/Fixtures/"],
+            resources: [.copy("Resources/Fixtures/")]
+        ),
     ]
 )

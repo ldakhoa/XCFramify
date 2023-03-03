@@ -49,6 +49,7 @@ extension Prism {
 
             try await runner.run(
                 projectDirectory: packageDirectory,
+                productName: productName,
                 frameworkOutputDir: outputDir
             )
         }

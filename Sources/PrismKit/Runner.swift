@@ -20,7 +20,11 @@ public struct Runner {
         }
     }
 
-    public func run(projectDirectory: URL, frameworkOutputDir: OutputDirectory) async throws {}
+    public func run(
+        projectDirectory: URL,
+        productName: String?,
+        frameworkOutputDir: OutputDirectory
+    ) async throws {}
 }
 
 extension Runner {
