@@ -12,3 +12,4 @@ DerivedData/
 *.xcframework
 .build
 Tests/**/XCFrameworks/*
+.vscode
