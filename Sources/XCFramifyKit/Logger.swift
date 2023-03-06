@@ -3,7 +3,7 @@ import Logging
 import Rainbow
 
 // TODO: Rename label
-private(set) var logger = Logger(label: "space.khoale.prism")
+private(set) var logger = Logger(label: "space.khoale.xcframify")
 
 extension Logger.MetadataValue {
     static func color(_ color: NamedColor) -> Self {

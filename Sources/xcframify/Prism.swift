@@ -1,10 +1,10 @@
 import Foundation
 import ArgumentParser
-import PrismKit
+import XCFramifyKit
 import OrderedCollections
 
 @main
-struct Prism: AsyncParsableCommand {
+struct XCFramify: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A build tool to create XCFrameworks from Swift packages.",
         subcommands: [Create.self],
@@ -12,7 +12,7 @@ struct Prism: AsyncParsableCommand {
     )
 }
 
-extension Prism {
+extension XCFramify {
     struct Create: AsyncParsableCommand {
         static var configuration: CommandConfiguration = .init(abstract: "Create XCFramework for a single package.")
 

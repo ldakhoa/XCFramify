@@ -10,7 +10,7 @@ struct Project {
     }
 
     var workspaceDirectory: AbsolutePath {
-        buildDirectory.appending(component: "prism")
+        buildDirectory.appending(component: "xcframify")
     }
 
     var projectPath: AbsolutePath {

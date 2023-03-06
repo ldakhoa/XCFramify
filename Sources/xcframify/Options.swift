@@ -1,6 +1,6 @@
 import Foundation
 import ArgumentParser
-import PrismKit
+import XCFramifyKit
 
 struct BuildOptionGroup: ParsableArguments {
     @Option(name: [.customLong("configuration"), .customShort("c")],

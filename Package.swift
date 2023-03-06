@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "prism",
+    name: "xcframify",
     platforms: [
         .macOS(.v13)
     ],
     products: [
-        .executable(name: "prism", targets: ["prism"]),
+        .executable(name: "xcframify", targets: ["xcframify"]),
         .library(
-            name: "PrismKit",
-            targets: ["PrismKit"])
+            name: "XCFramifyKit",
+            targets: ["XCFramifyKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-package-manager.git",
@@ -26,21 +26,21 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "prism",
+            name: "xcframify",
             dependencies: [
-                .target(name: "PrismKit"),
+                .target(name: "XCFramifyKit"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
         .target(
-            name: "PrismKit",
+            name: "XCFramifyKit",
             dependencies: [
                 .product(name: "XCBuildSupport", package: "swift-package-manager"),
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "Rainbow", package: "Rainbow"),
             ]),
         .testTarget(
-            name: "PrismKitTests",
-            dependencies: ["PrismKit"],
+            name: "XCFramifyKitTests",
+            dependencies: ["XCFramifyKit"],
             exclude: ["Resources/Fixtures/"],
             resources: [.copy("Resources/Fixtures/")]
         ),
