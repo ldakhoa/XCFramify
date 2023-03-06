@@ -1,20 +1,33 @@
 import Foundation
+import struct TSCBasic.AbsolutePath
 
 struct Project {
-    let projectDirectory: URL
+    let projectDirectory: AbsolutePath
     let name: String
-    let scheme: String
 
-    var buildDirectory: URL {
-        projectDirectory.appendingPathComponent(".build")
+    var buildDirectory: AbsolutePath {
+        projectDirectory.appending(component: ".build")
     }
 
-    var workspaceDirectory: URL {
-        buildDirectory.appendingPathExtension("prism")
+    var workspaceDirectory: AbsolutePath {
+        buildDirectory.appending(component: "prism")
     }
 
-    var projectPath: URL {
-        buildDirectory.appendingPathComponent("\(name).xcodeproj")
+    var projectPath: AbsolutePath {
+        projectDirectory.appending(component: "\(name).xcodeproj")
+    }
+
+    private let executor: any Executor
+
+    init(
+        projectDirectory: AbsolutePath,
+        name: String,
+        buildConfiguration: BuildConfiguration,
+        executor: any Executor = ProcessExecutor()
+    ) async throws {
+        self.projectDirectory = projectDirectory
+        self.name = name
+        self.executor = executor
     }
 }
 

@@ -1,4 +1,5 @@
 import Foundation
+import struct TSCBasic.AbsolutePath
 
 struct CreateXCFrameworkCommand: XcodeBuildCommand {
     // MARK: - Dependencies
@@ -7,7 +8,7 @@ struct CreateXCFrameworkCommand: XcodeBuildCommand {
     var buildConfiguration: BuildConfiguration
     var sdks: Set<SDK>
     var debugSymbolPaths: [URL]?
-    var outputDir: URL
+    var outputDir: AbsolutePath
 
     // MARK: - XcodeBuildCommand
 
@@ -19,27 +20,27 @@ struct CreateXCFrameworkCommand: XcodeBuildCommand {
 
     var options: [XcodeBuildOption] {
         sdks.map { sdk in
-                .init(key: "framework", value: buildFramemorkPath(sdk: sdk).path)
+                .init(key: "framework", value: buildFramemorkPath(sdk: sdk).pathString)
         }
         +
         (debugSymbolPaths.flatMap {
             $0.map { .init(key: "debug-symbols", value: $0.path) }
         } ?? [])
         +
-        [.init(key: "output", value: xcFrameworkPath.path)]
+        [.init(key: "output", value: xcFrameworkPath.pathString)]
     }
 
     // MARK: - Private
 
-    private var xcFrameworkPath: URL {
-        outputDir.appendingPathComponent("\(project.name).xcframework")
+    private var xcFrameworkPath: AbsolutePath {
+        outputDir.appending(component: "\(project.name).xcframework")
     }
 
-    private func buildFramemorkPath(sdk: SDK) -> URL {
+    private func buildFramemorkPath(sdk: SDK) -> AbsolutePath {
         buildXCArchivePath(project: project, sdk: sdk)
-            .appendingPathComponent("Products")
-            .appendingPathComponent("Library")
-            .appendingPathComponent("Frameworks")
-            .appendingPathComponent("\(project.scheme).framework")
+            .appending(component: "Products")
+            .appending(component: "Library")
+            .appending(component: "Frameworks")
+            .appending(component: "\(project.name).framework")
     }
 }

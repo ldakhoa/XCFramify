@@ -1,4 +1,5 @@
 import Foundation
+import struct TSCBasic.AbsolutePath
 
 struct XcodeBuildClient<E: Executor> {
     let executor: E
@@ -8,7 +9,7 @@ struct XcodeBuildClient<E: Executor> {
         buildConfiguration: BuildConfiguration,
         sdks: Set<SDK>,
         debugSymbolPaths: [URL]?,
-        outputDir: URL
+        outputDir: AbsolutePath
     ) async throws {
         try await executor.execute(CreateXCFrameworkCommand(
             project: project,
@@ -22,12 +23,24 @@ struct XcodeBuildClient<E: Executor> {
     func archive(
         project: Project,
         buildConfiguration: BuildConfiguration,
-        sdk: SDK
+        sdk: SDK,
+        scheme: Scheme
     ) async throws {
         try await executor.execute(ArchiveCommand(
             project: project,
             buildConfiguration: buildConfiguration,
-            sdk: sdk
+            sdk: sdk,
+            scheme: scheme
+        ))
+    }
+
+    func list(
+        project: Project,
+        buildConfiguration: BuildConfiguration
+    ) async throws -> ExecutorResult {
+        try await executor.execute(ListCommand(
+            buildConfiguration: buildConfiguration,
+            project: project
         ))
     }
 

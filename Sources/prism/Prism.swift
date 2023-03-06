@@ -16,11 +16,11 @@ extension Prism {
     struct Create: AsyncParsableCommand {
         static var configuration: CommandConfiguration = .init(abstract: "Create XCFramework for a single package.")
 
+        @Argument(help: "The product name of the framework.")
+        var name: String?
+
         @Argument(help: "Path indicates a package directory.", completion: .directory)
         var packageDirectory: URL = URL(fileURLWithPath: ".")
-
-        @Argument(help: "The product name. Optional if scheme doesn't match the name of your framework")
-        var productName: String = ""
 
         @Flag(name: [.long, .short], help: "Provide additional build progress.")
         var verbose: Bool = false
@@ -49,7 +49,7 @@ extension Prism {
 
             try await runner.run(
                 projectDirectory: packageDirectory,
-                productName: productName,
+                productName: name,
                 frameworkOutputDir: outputDir
             )
         }

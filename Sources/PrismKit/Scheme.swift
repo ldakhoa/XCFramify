@@ -7,7 +7,7 @@ public struct Scheme {
     }
 }
 
-extension Scheme: Equatable {
+extension Scheme: Hashable & Equatable {
     public static func == (lhs: Scheme, rhs: Scheme) -> Bool {
         return lhs.name == rhs.name
     }

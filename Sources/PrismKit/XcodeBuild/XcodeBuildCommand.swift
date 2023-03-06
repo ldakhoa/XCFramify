@@ -1,4 +1,5 @@
 import Foundation
+import struct TSCBasic.AbsolutePath
 
 protocol XcodeBuildCommand {
     var subCommand: String { get }
@@ -15,8 +16,8 @@ extension XcodeBuildCommand {
             .compactMap { $0 }
     }
 
-    func buildXCArchivePath(project: Project, sdk: SDK) -> URL {
-        project.archivesPath.appendingPathComponent("\(sdk.name).xcarchive")
+    func buildXCArchivePath(project: Project, sdk: SDK) -> AbsolutePath {
+        project.archivesPath.appending(component: "\(sdk.name).xcarchive")
     }
 }
 
