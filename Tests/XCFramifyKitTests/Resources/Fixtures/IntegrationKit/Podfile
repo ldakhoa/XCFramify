@@ -19,5 +19,8 @@ end
 
 target 'IntegrationWatchOS' do
   shared_pods
+
+  target 'IntegrationWatchOSTests' do
+  end
 end
 

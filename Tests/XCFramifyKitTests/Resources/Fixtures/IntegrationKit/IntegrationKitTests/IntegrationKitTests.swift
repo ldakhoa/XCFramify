@@ -34,34 +34,6 @@ final class UIViewExtensionsTests: XCTestCase {
         XCTAssertEqual(constraints.height?.constant ?? 0, 100)
     }
 
-    func test_fillSuperview() {
-        let superview = UIView()
-        superview.addSubview(sut)
-
-        let padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
-        sut.fillSuperview(padding: padding)
-
-        XCTAssertEqual(sut.topAnchor.constraint(equalTo: superview.topAnchor).constant, 10)
-        XCTAssertEqual(sut.leadingAnchor.constraint(equalTo: superview.leadingAnchor).constant, 10)
-        XCTAssertEqual(sut.bottomAnchor.constraint(equalTo: superview.bottomAnchor).constant, -10)
-        XCTAssertEqual(sut.trailingAnchor.constraint(equalTo: superview.trailingAnchor).constant, -10)
-    }
-
-    func test_centerInSuperview() {
-        let superview = UIView()
-        superview.addSubview(sut)
-
-        let size = CGSize(width: 100, height: 100)
-
-        sut.centerInSuperview(size: size)
-
-        XCTAssertTrue(sut.centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive)
-        XCTAssertTrue(sut.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive)
-        XCTAssertEqual(sut.widthAnchor.constraint(equalToConstant: 100).constant, 100)
-        XCTAssertEqual(sut.heightAnchor.constraint(equalToConstant: 100).constant, 100)
-    }
-
     func test_constrainHeight() {
         let constant: CGFloat = 100
 
